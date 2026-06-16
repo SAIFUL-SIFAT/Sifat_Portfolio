@@ -30,7 +30,7 @@ async function sendContactEmail(formData) {
     }
     const { name, email, subject, message } = validatedFields.data;
     // The handler body runs ONLY on the server.
-    const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Resend"]("re_CwHD82Rc_DmXazLFVX82AYPTyGcBRYyqm");
+    const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Resend"](process.env.RESEND_API_KEY);
     try {
         const { data, error } = await resend.emails.send({
             from: "onboarding@resend.dev",

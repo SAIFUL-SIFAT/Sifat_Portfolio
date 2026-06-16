@@ -24,7 +24,7 @@ export async function sendContactEmail(formData: z.infer<typeof contactSchema>) 
   const { name, email, subject, message } = validatedFields.data;
 
   // The handler body runs ONLY on the server.
-  const resend = new Resend("re_CwHD82Rc_DmXazLFVX82AYPTyGcBRYyqm");
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
     const { data, error } = await resend.emails.send({
