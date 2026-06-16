@@ -118,7 +118,7 @@ const viewport = {
 };
 const metadata = {
     title: "Shaiful Alam — Software Engineer",
-    description: "Software Engineering Intern and CS student. Open for freelance projects.",
+    description: "Full-Stack Engineer specializing in React, TypeScript, NestJS, and PostgreSQL. Building fast, scalable web applications. Based in Dhaka, Bangladesh.",
     authors: [
         {
             name: "Shaiful Alam"
@@ -126,7 +126,7 @@ const metadata = {
     ],
     openGraph: {
         title: "Shaiful Alam — Software Engineer",
-        description: "Software Engineering Intern and CS student. Open for freelance projects.",
+        description: "Full-Stack Engineer specializing in React, TypeScript, NestJS, and PostgreSQL. Building fast, scalable web applications. Based in Dhaka, Bangladesh.",
         type: "website"
     },
     twitter: {
@@ -145,17 +145,17 @@ function RootLayout({ children }) {
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/app/layout.tsx",
-                lineNumber: 47,
+                lineNumber: 49,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/layout.tsx",
-            lineNumber: 46,
+            lineNumber: 48,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/layout.tsx",
-        lineNumber: 45,
+        lineNumber: 47,
         columnNumber: 5
     }, this);
 }

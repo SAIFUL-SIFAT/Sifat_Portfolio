@@ -20,9 +20,18 @@ const stagger: Variants = {
 };
 
 const services = [
-  { title: "Brand Identity", desc: "Logos, systems, and brand worlds with soul." },
-  { title: "UI / UX Design", desc: "Product surfaces that feel inevitable to use." },
-  { title: "Design Systems", desc: "Scalable tokens, components, and guidelines." },
+  {
+    title: "Full-Stack Development",
+    desc: "Crafting performant web experiences with React, TypeScript, and Next.js.",
+  },
+  {
+    title: "API Design",
+    desc: "Building robust, type-safe backends and scalable RESTful systems with NestJS.",
+  },
+  {
+    title: "Database Architecture",
+    desc: "Designing efficient PostgreSQL schemas and data flows for modern applications.",
+  },
 ];
 
 export function Services() {

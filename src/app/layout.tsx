@@ -21,11 +21,13 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Shaiful Alam — Software Engineer",
-  description: "Software Engineering Intern and CS student. Open for freelance projects.",
+  description:
+    "Full-Stack Engineer specializing in React, TypeScript, NestJS, and PostgreSQL. Building fast, scalable web applications. Based in Dhaka, Bangladesh.",
   authors: [{ name: "Shaiful Alam" }],
   openGraph: {
     title: "Shaiful Alam — Software Engineer",
-    description: "Software Engineering Intern and CS student. Open for freelance projects.",
+    description:
+      "Full-Stack Engineer specializing in React, TypeScript, NestJS, and PostgreSQL. Building fast, scalable web applications. Based in Dhaka, Bangladesh.",
     type: "website",
   },
   twitter: {
