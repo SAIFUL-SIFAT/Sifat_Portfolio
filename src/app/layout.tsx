@@ -1,0 +1,51 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, Bebas_Neue } from "next/font/google";
+import "./globals.css";
+import { Providers } from "./providers";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+export const metadata: Metadata = {
+  title: "Shaiful Alam — Software Engineer",
+  description: "Software Engineering Intern and CS student. Open for freelance projects.",
+  authors: [{ name: "Shaiful Alam" }],
+  openGraph: {
+    title: "Shaiful Alam — Software Engineer",
+    description: "Software Engineering Intern and CS student. Open for freelance projects.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+  },
+  icons: {
+    icon: "/assets/icon.png",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${inter.variable} ${bebasNeue.variable} antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}

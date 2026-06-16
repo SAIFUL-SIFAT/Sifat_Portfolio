@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, type Variants } from "motion/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -25,7 +27,10 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative z-10 mx-auto w-full max-w-7xl px-5 py-24 md:px-8 md:py-32">
+    <section
+      id="services"
+      className="relative z-10 mx-auto w-full max-w-7xl px-5 py-16 md:px-8 md:py-32"
+    >
       <motion.div
         variants={stagger}
         initial="hidden"
@@ -33,10 +38,16 @@ export function Services() {
         viewport={{ once: true, amount: 0.3 }}
         className="mb-12 max-w-xl"
       >
-        <motion.span variants={fadeUp} className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+        <motion.span
+          variants={fadeUp}
+          className="text-xs uppercase tracking-[0.3em] text-muted-foreground"
+        >
           What I do
         </motion.span>
-        <motion.h3 variants={fadeUp} className="font-display mt-3 text-5xl leading-[0.95] md:text-6xl">
+        <motion.h3
+          variants={fadeUp}
+          className="font-display mt-3 text-5xl leading-[0.95] md:text-6xl"
+        >
           Crafted with intent.
         </motion.h3>
         <motion.p variants={fadeUp} className="mt-4 text-muted-foreground">
