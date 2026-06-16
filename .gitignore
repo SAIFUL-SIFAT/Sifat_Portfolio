@@ -16,6 +16,11 @@ dist-ssr
 .nitro
 *.local
 
+# Next.js
+.next/
+out/
+tsconfig.tsbuildinfo
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars

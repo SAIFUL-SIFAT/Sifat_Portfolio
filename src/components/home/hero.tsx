@@ -21,6 +21,9 @@ const stagger: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
 };
+
+// How long the page-loader takes before the hero is visible (~columns finish)
+const PRELOADER_DELAY = 2.8;
 export function Hero() {
   return (
     <section id="top" className="relative z-10 w-full min-h-screen overflow-x-clip">
@@ -87,8 +90,8 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Bottom blend gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none z-20" />
+      {/* Bottom blend gradient - a smooth fade that transitions the transparent shader overlay into the background */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent pointer-events-none z-20" />
     </section>
   );
 }
@@ -121,7 +124,8 @@ function NeonShaderBackground() {
     }
     syncSize();
 
-    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    const glOptions = { alpha: true, premultipliedAlpha: true, antialias: true };
+    const gl = canvas.getContext("webgl", glOptions) || canvas.getContext("experimental-webgl", glOptions);
     if (!gl) return;
     const glContext = gl as WebGLRenderingContext;
 
@@ -135,7 +139,7 @@ function NeonShaderBackground() {
     `;
 
     // Recolored to #7F6F46 (warm bronze/gold) instead of teal,
-    // and background made transparent-friendly (very dark, near black)
+    // and background made completely transparent so it blends with BackgroundLayers.
     const fs = `
       precision highp float;
       uniform float u_time;
@@ -145,8 +149,8 @@ function NeonShaderBackground() {
           vec2 uv = gl_FragCoord.xy / u_resolution.xy;
           float time = u_time * 0.2;
 
-          // Background: near-transparent dark base
-          vec3 color = vec3(0.02, 0.02, 0.03);
+          // Background: completely transparent
+          vec3 color = vec3(0.0);
 
           // Flowing energy pattern
           float mask = 0.0;
@@ -160,11 +164,11 @@ function NeonShaderBackground() {
           vec3 glowColor = vec3(0.498, 0.435, 0.275);
           color += glowColor * mask * 0.6;
 
-          // Vignette
-          float d = length(gl_FragCoord.xy / u_resolution.xy - 0.5);
-          color *= 1.0 - d * 0.5;
+          // Set alpha based on brightness of the glow
+          float alpha = clamp(max(max(color.r, color.g), color.b) * 1.5, 0.0, 1.0);
 
-          gl_FragColor = vec4(color, 1.0);
+          // Premultiply color by alpha for correct browser WebGL transparency compositing
+          gl_FragColor = vec4(color * alpha, alpha);
       }
     `;
 
@@ -203,6 +207,9 @@ function NeonShaderBackground() {
       glContext.viewport(0, 0, canvas.width, canvas.height);
       if (uTime) glContext.uniform1f(uTime, t * 0.001);
       if (uRes) glContext.uniform2f(uRes, canvas.width, canvas.height);
+      // Ensure drawing buffer is cleared with transparent alpha
+      glContext.clearColor(0.0, 0.0, 0.0, 0.0);
+      glContext.clear(glContext.COLOR_BUFFER_BIT);
       glContext.drawArrays(glContext.TRIANGLE_STRIP, 0, 4);
       rafId = requestAnimationFrame(render);
     }
@@ -217,7 +224,7 @@ function NeonShaderBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-50"
+      className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-55 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)]"
     />
   );
 }
@@ -234,7 +241,7 @@ function HeroTitle({ text }: { text: string }) {
             key={i}
             initial={{ y: "110%", opacity: 0, filter: "blur(12px)" }}
             animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-            transition={{ delay: 0.06 * i, duration: 1, ease: EASE }}
+            transition={{ delay: PRELOADER_DELAY + 0.06 * i, duration: 1, ease: EASE }}
             className="inline-block"
           >
             {c === " " ? "\u00A0" : c}
@@ -258,7 +265,7 @@ function HeroSubtitle({
     <motion.h2
       initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ delay, duration: 1, ease: EASE }}
+      transition={{ delay: PRELOADER_DELAY + delay, duration: 1, ease: EASE }}
       className={`font-display text-[10vw] leading-none tracking-wide text-foreground/90 md:text-6xl lg:text-7xl ${className}`}
     >
       {text}

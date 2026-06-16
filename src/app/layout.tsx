@@ -3,6 +3,7 @@ import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { PageLoader } from "@/components/layout/page-loader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${bebasNeue.variable} antialiased`}>
         <Providers>
+          <PageLoader />
           {children}
           <ScrollToTop />
         </Providers>
