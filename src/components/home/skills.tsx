@@ -66,11 +66,11 @@ export function Skills() {
           src="/tools.png"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-top md:object-center"
         />
         <div className="absolute inset-0 bg-black/65" />
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-24 md:px-8 md:py-32">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-16 md:px-8 md:py-32">
           <div ref={headerRef} className="mb-16 max-w-xl">
             <span className="text-xs uppercase tracking-[0.3em] text-white/50">Tech Stack</span>
             <h3 className="font-display mt-3 text-5xl leading-[0.95] md:text-6xl text-white">

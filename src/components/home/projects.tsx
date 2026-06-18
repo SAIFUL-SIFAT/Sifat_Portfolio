@@ -243,7 +243,11 @@ function ProjectCard({ project }: { project: Project }) {
 
       <div className="flex flex-col gap-4 overflow-y-auto scrollbar-none md:grid md:grid-cols-12 md:gap-8 md:overflow-visible h-full justify-between">
         {/* Left: metadata + features */}
-        <div className="flex flex-col justify-between md:col-span-7 h-full">
+        <div className={`flex flex-col justify-between h-full ${
+          (project.title === "Online Art Store" || (!project.links.demo && project.title !== "Sentin" && project.title !== "Petal & Pearl")) 
+            ? "md:col-span-12" 
+            : "md:col-span-7"
+        }`}>
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-semibold">
@@ -291,40 +295,42 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        {/* Right: screenshot placeholder */}
-        <div className="hidden md:flex md:col-span-5 h-full items-center justify-center">
-          <div className="w-full h-full min-h-[200px] border border-white/10 rounded-xl overflow-hidden bg-black/40 shadow-inner transition-colors duration-300 group-hover:border-accent/30 flex flex-col">
-            {/* Browser top bar */}
-            <div className="bg-white/5 h-6 w-full flex items-center px-3 gap-1.5 border-b border-white/5 shrink-0">
-              <div className="h-1.5 w-1.5 rounded-full bg-rose-500/70" />
-              <div className="h-1.5 w-1.5 rounded-full bg-amber-500/70" />
-              <div className="h-1.5 w-1.5 rounded-full bg-emerald-500/70" />
-              <div className="h-3 w-1/3 bg-white/5 rounded mx-auto border border-white/5" />
-            </div>
-            {/* Image placeholder / actual image */}
-            <div className="relative flex-1 w-full bg-white/[0.02] overflow-hidden">
-              {project.title === "Sentin" ? (
-                <img
-                  src="/Sentin.png"
-                  alt="Sentin Screenshot"
-                  className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                />
-              ) : project.title === "Petal & Pearl" ? (
-                <img
-                  src="/petal.png"
-                  alt="Petal & Pearl Screenshot"
-                  className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[10px] font-mono text-muted-foreground/40 uppercase tracking-widest">
-                    Screenshot Placeholder
-                  </span>
-                </div>
-              )}
+        {/* Right: screenshot placeholder (only shown if the project has a screenshot or demo) */}
+        {project.title !== "Online Art Store" && (project.links.demo || project.title === "Sentin" || project.title === "Petal & Pearl") && (
+          <div className="hidden md:flex md:col-span-5 h-full items-center justify-center">
+            <div className="w-full h-full min-h-[200px] border border-white/10 rounded-xl overflow-hidden bg-black/40 shadow-inner transition-colors duration-300 group-hover:border-accent/30 flex flex-col">
+              {/* Browser top bar */}
+              <div className="bg-white/5 h-6 w-full flex items-center px-3 gap-1.5 border-b border-white/5 shrink-0">
+                <div className="h-1.5 w-1.5 rounded-full bg-rose-500/70" />
+                <div className="h-1.5 w-1.5 rounded-full bg-amber-500/70" />
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500/70" />
+                <div className="h-3 w-1/3 bg-white/5 rounded mx-auto border border-white/5" />
+              </div>
+              {/* Image placeholder / actual image */}
+              <div className="relative flex-1 w-full bg-white/[0.02] overflow-hidden">
+                {project.title === "Sentin" ? (
+                  <img
+                    src="/Sentin.png"
+                    alt="Sentin Screenshot"
+                    className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                ) : project.title === "Petal & Pearl" ? (
+                  <img
+                    src="/petal.png"
+                    alt="Petal & Pearl Screenshot"
+                    className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-[10px] font-mono text-muted-foreground/40 uppercase tracking-widest">
+                      Screenshot Placeholder
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Actions row */}
