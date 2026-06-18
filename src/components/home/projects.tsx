@@ -132,7 +132,7 @@ export function Projects() {
               Projects.
             </h3>
             <p className="mt-3 text-sm text-muted-foreground md:text-base leading-relaxed">
-              A summary of selected projects by Saiful Sifat — Full-Stack Engineer.
+              A summary of selected projects by Shaiful Alam - Full-Stack Engineer.
             </p>
           </div>
           <div className="flex flex-col gap-8">
@@ -243,11 +243,10 @@ function ProjectCard({ project }: { project: Project }) {
 
       <div className="flex flex-col gap-4 overflow-y-auto scrollbar-none md:grid md:grid-cols-12 md:gap-8 md:overflow-visible h-full justify-between">
         {/* Left: metadata + features */}
-        <div className={`flex flex-col justify-between h-full ${
-          (project.title === "Online Art Store" || (!project.links.demo && project.title !== "Sentin" && project.title !== "Petal & Pearl")) 
-            ? "md:col-span-12" 
-            : "md:col-span-7"
-        }`}>
+        <div className={`flex flex-col justify-between h-full ${(project.title === "Online Art Store" || (!project.links.demo && project.title !== "Sentin" && project.title !== "Petal & Pearl"))
+          ? "md:col-span-12"
+          : "md:col-span-7"
+          }`}>
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-semibold">
