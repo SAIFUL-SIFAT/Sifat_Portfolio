@@ -62,30 +62,23 @@ export function Hero() {
         {/* Bottom row: bio + cta.
             On mobile, sits below the portrait in normal flow with a small
             top gap. On md+, sits in a 2-col grid pinned to the bottom. */}
-        <div className="relative z-10 mt-8 grid gap-8 md:mt-20 md:grid-cols-2">
+        <div className="relative z-10 mt-2 md:absolute md:right-8 md:bottom-30">
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
             transition={{ delayChildren: 0.8 }}
-            className="max-w-md"
+            className="max-w-md md:ms-auto"
           >
-            <motion.p
-              variants={fadeUp}
-              className="text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg"
-            >
-              Hey there! I&apos;m a Full-stack engineer specializing in React, TypeScript, NestJS,
-              and PostgreSQL — building fast, scalable, and user-focused web applications.
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="mt-6">
-              <Button
-                asChild
-                className="h-12 rounded-full bg-primary px-7 text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-[0_10px_30px_-10px_oklch(0.78_0.16_142/0.6)]"
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-md">
+              <motion.p
+                variants={fadeUp}
+                className="text-base leading-relaxed text-white/80 md:text-lg"
               >
-                <Link href="/contact">Connect</Link>
-              </Button>
-            </motion.div>
+                Hey there! I&apos;m a Full-stack engineer specializing in React, TypeScript, NestJS,
+                and PostgreSQL — building fast, scalable, and user-focused web applications.
+              </motion.p>
+            </div>
           </motion.div>
         </div>
       </div>

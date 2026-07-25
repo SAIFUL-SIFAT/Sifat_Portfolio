@@ -155,6 +155,12 @@ export function Navbar() {
               >
                 Contact
               </Link>
+              <a
+                href="https://certificates-one-murex.vercel.app"
+                className="story-link text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Certificates
+              </a>
             </nav>
 
             <div className="flex items-center gap-3">
@@ -266,6 +272,20 @@ export function Navbar() {
 
               <div
                 ref={(el) => addContentRef(el, navItems.length + 2)}
+              >
+                <a
+                  href="https://certificates-one-murex.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-display text-4xl tracking-tight text-zinc-100 transition-colors hover:text-accent"
+                  onClick={() => setOpen(false)}
+                >
+                  Certificates
+                </a>
+              </div>
+
+              <div
+                ref={(el) => addContentRef(el, navItems.length + 3)}
                 className="mt-4"
               >
                 <Button
@@ -284,7 +304,7 @@ export function Navbar() {
             </nav>
 
             <div
-              ref={(el) => addContentRef(el, navItems.length + 3)}
+              ref={(el) => addContentRef(el, navItems.length + 4)}
               className="px-6 pb-10 pt-4 text-center text-xs uppercase tracking-[0.3em] text-zinc-400"
             >
               © Shaiful Alam
